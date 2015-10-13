@@ -1,0 +1,9 @@
+.container {
+	border: 1px solid black;
+	height: 200px;
+}
+.container div {
+	border: 1px dotted grey;
+	display: inline-block;
+	width: 30px;
+}
