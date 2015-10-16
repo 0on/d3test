@@ -1,17 +1,31 @@
 ;(function () {
 	'use strict';
 
-	var selector = function() {
-				return d3.select('.container').selectAll('div');
-			};
+	var w = 500,
+			h = 200,
+			data = generateData(50),
+			svg = d3.select('body').append('svg')
+							.attr({
+								width: w,
+								height: h
+							});
 
-	addData(selector(), generateData(20), divRectsProcessor);
-	// setInterval(function () {
-	// 	console.log(1);
-	// 	var data = generateData(20);
-	// 	removeData(selector(), []);
-	// 	addData(selector(), data, divRectsProcessor);
-	// }, 500);
+	svg.selectAll('rect').data(data).enter().append('rect')
+		.attr({
+			x: function (d, i) {
+				return i * (w / data.length);
+			},
+			y: function (d) {
+				return h - 2 * d;
+			},
+			width: function () {
+				return w / data.length - 1;
+			},
+			height: function (d) {
+				return 2 * d;
+			},
+			fill: generate
+		});
 
 	function generateData(n) {
 		var ar = [];
@@ -21,34 +35,4 @@
 		return ar;
 	}
 
-	// data manipulation
-
-	function removeData(selector, restData) {
-		selector.data(restData, function(d) {
-			return d;
-		}).exit().remove();
-	}
-
-	function addData(selector, data, processor) { //need selector + data + adder
-		processor(selector.data(data, function(d) {
-			return d;
-		}).enter());
-	}
-
-	// prcessors
-
-	function divRectsProcessor(data) {
-		data.append('div')
-			.style('height', function (d) {
-				return d * 2;
-			})
-			.style('background-color', generate);
-	}
-
-	function pTextProcessor(data) {
-		data.append('p')
-			.text(function (d) {
-				return d;
-			})
-	}
 })();
