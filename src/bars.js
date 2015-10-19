@@ -13,7 +13,7 @@ var bars = (function() {
     drawElements(svg.selectAll('rect').data(data).enter().append('rect'));
     svg.on('click', function () {
       data = d3Shared.generateData(count);
-      drawElements(svg.selectAll('rect').data(data));
+      drawElements(svg.selectAll('rect').data(data).transition().ease('cubic').duration(500));
     });
   };
 

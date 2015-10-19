@@ -15,7 +15,7 @@ var circles = (function () {
 		drawElement(svgCircles.selectAll('circle').data(circleData).enter().append('circle'));
 		svgCircles.on('click', function () {
 			makeData();
-			drawElement(svgCircles.selectAll('circle').data(circleData));
+			drawElement(svgCircles.selectAll('circle').data(circleData).transition().ease('cubic').duration(500));
 		})
 	}
 
