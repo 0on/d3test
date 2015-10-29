@@ -1,17 +1,17 @@
 ;
-var bars = (function() {
+var bars = (() => {
   'use strict';
 
-  var w = 500,
-      h = 200,
-      count = 30,
-      data = d3Shared.generateData(count);
+  const w = 500,
+        h = 200,
+        count = 30;
+  let data = d3Shared.generateData(count);
 
   function draw() {
-    var svg = d3Shared.makeSvg(w, h);
+    let svg = d3Shared.makeSvg(w, h);
 
     drawElements(svg.selectAll('rect').data(data).enter().append('rect'));
-    svg.on('click', function () {
+    svg.on('click', () => {
       data = d3Shared.generateData(count);
       drawElements(svg.selectAll('rect').data(data).transition().ease('cubic').duration(500));
     });
@@ -19,16 +19,16 @@ var bars = (function() {
 
   function drawElements(svg) {
     svg.attr({
-      x: function(d, i) {
+      x: (d, i) => {
         return i * (w / data.length);
       },
-      y: function(d) {
+      y: (d) => {
         return h - 2 * d;
       },
-      width: function() {
+      width: () => {
         return w / data.length - 1;
       },
-      height: function(d) {
+      height: (d) => {
         return 2 * d;
       },
       fill: d3Shared.generateRandomColor

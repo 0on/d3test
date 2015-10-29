@@ -1,18 +1,18 @@
 ;
-var d3Shared = (function() {
+var d3Shared = (() => {
   'use strict';
 
   function generateRandomColor() {
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
       color += Math.floor(Math.random() * 16).toString(16);
     }
     return color;
   };
 
   function generateData(n) {
-    var ar = [];
-    for (var i = 0; i < n; i++) {
+    let ar = [];
+    for (let i = 0; i < n; i++) {
       ar.push(Math.floor(Math.random() * 100));
     }
     return ar;

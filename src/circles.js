@@ -1,15 +1,15 @@
 ;
-var circles = (function () {
+var circles = (() => {
 	'use strict';
 
-	var w = 600,
-			h = 600,
-			count = 60,
-			circleData,
+	const w = 600,
+				h = 600,
+				count = 60;
+	let	circleData,
 			circleDataOrig;
 
 	function draw() {
-		var svgCircles = d3Shared.makeSvg(w, h);
+		let svgCircles = d3Shared.makeSvg(w, h);
 
 		makeData();
 		drawElement(svgCircles.selectAll('circle').data(circleData).enter().append('circle'));
@@ -37,7 +37,7 @@ var circles = (function () {
 	function makeData() {
 		circleDataOrig = d3Shared.generateData(count * 3);
 		circleData = [];
-		for (var i = 0; i < count; i++) {
+		for (let i = 0; i < count; i++) {
 			circleData.push([circleDataOrig[i], circleDataOrig[i + count], circleDataOrig[i + 2 * count]]);
 		}
 	}
